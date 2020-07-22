@@ -1,0 +1,15 @@
+(defproject clj-workshop-2020 "0.1.0-SNAPSHOT"
+  :plugins [[lein-cljfmt "0.6.6"]
+            [lein-nsorg "0.3.0"]]
+
+  :dependencies [[com.stuartsierra/component "1.0.0"]
+                 [mount "0.1.16"]
+                 [org.clojure/clojure "1.10.1"]]
+
+  :aliases {"lint-fix" ["do"
+                        ["nsorg" "--replace"]
+                        ["cljfmt" "fix"]]}
+
+  :main ^:skip-aot clj-workshop-2020.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all}})
