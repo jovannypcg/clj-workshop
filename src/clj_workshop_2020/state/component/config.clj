@@ -1,8 +1,6 @@
 (ns clj-workshop-2020.state.component.config
   (:require [clojure.edn :as edn]
-            [clojure.java.io :as io]
-            [com.stuartsierra.component :as component])
-  (:import (java.io PushbackReader)))
+            [com.stuartsierra.component :as component]))
 
 (defn load-config
   "Loads a file given the incoming path and transforms it to a
@@ -10,10 +8,7 @@
   [path]
   (-> path
       slurp
-      .getBytes
-      io/reader
-      PushbackReader.
-      edn/read))
+      edn/read-string))
 
 ;; Config component is declared here.
 
