@@ -6,14 +6,17 @@
   (do
     (println "Starting database connection...")
     (Thread/sleep 2000)
-    (atom {:host host :port port :status :up :data []})))
+    (atom {:host   host
+           :port   port
+           :status :up
+           :data   []})))
 
 (defn stop-connection
   [connection]
   (do
     (println "Stopping database connection...")
     (Thread/sleep 2000)
-    (assoc connection :status :down)))
+    (swap! connection :status :down)))
 
 ;; Database component is declared here.
 
