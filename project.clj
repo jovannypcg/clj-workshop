@@ -1,4 +1,4 @@
-(defproject clj-workshop-2020 "0.1.0-SNAPSHOT"
+(defproject clj-workshop "0.1.0-SNAPSHOT"
   :plugins [[lein-cljfmt "0.6.6"]
             [lein-nsorg "0.3.0"]]
 
