@@ -3,6 +3,7 @@
             [lein-nsorg "0.3.0"]]
 
   :dependencies [[com.stuartsierra/component "1.0.0"]
+                 [datascript                 "1.0.0"]
                  [lambdaisland/kaocha        "1.0.641"]
                  [mount                      "0.1.16"]
                  [org.clojure/clojure        "1.10.1"]]
