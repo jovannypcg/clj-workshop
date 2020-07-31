@@ -18,7 +18,7 @@
     (println "parallel-map finishes and returns a value")
     (count results)))
 
-(defn do-stuff []
+(defn do-stuff! []
   (let [results (promise)
         values  (range 36)
         mapped  (future (parallel-map! results fn-to-map values))]
@@ -29,10 +29,10 @@
     (println "Now we need to use the value of the promise")
     (println "We will be blocked until a value is available")
     @results
-    (println "we got unblocked because parallel-map delivered to results")
+    (println "we got unblocked because parallel-map delivered results")
     (println (str "Has parallel-map stopped running? " (realized? mapped)))
-    (println "Lets wait for it")
+    (println "Let's wait for it")
     (println (str "parallel-map returned: " @mapped))))
 
 
-(do-stuff)
+(do-stuff!)

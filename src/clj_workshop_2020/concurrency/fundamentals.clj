@@ -1,32 +1,5 @@
 (ns clj-workshop-2020.concurrency.fundamentals)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Concurrency
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; A way to get safe access to limited resources by multiple
-;; actors/threads
-
-;; There are multiple paradigms models to do concurrency
-
-;; Locks are one way of doing it
-
-;; Clojure does an amazing job where there is immutable data by means of
-;; persistent data structures provided by Clojure core
-
-;; But what about mutating things?
-
-;; There are four ways,
-
-;; vars
-;; refs
-;; agents
-;; atoms
-
-;; But first a brief introduction to running things in different threads
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -66,89 +39,17 @@
   (def p (promise))
 
   ;; This will block and execute
-  (future (Thread/sleep 5000) (deliver p 1))
+  (future (Thread/sleep 8000) (deliver p 1))
 
   @p)
 
 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; vars
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-(def x 1)
-
-(comment
-  (def a 1)
-  (future (println a))
-  (future (println a)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Atoms
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Use it to represent Shared state
-
-;; But first
-;; Problems with shared state and why it's messy
-
-;; int b = 1
-;; new Thread(() -> b = 3
-;;            Thread.sleep (new Random().nextInt(1000))
-;;            System.out.println(b)).start();
-;; new Thread(() -> b = 4
-;;            Thread.sleep (new Random().nextInt(1000))
-;;            System.out.println(b)).start();
-
-;; https://aphyr.com/posts/306-clojure-from-the-ground-up-state
-
-;; A counterpart in Clojure
-
-
-(comment
-  (do
-    (def b 1)
-    (future (def b 3)
-            (Thread/sleep (rand-int 1000))
-            (println b))
-
-    (future (def b 4)
-            (Thread/sleep (rand-int 1000))
-            (println b)))
-  (do
-    (def b [])
-
-    (doseq [n (range 2000)]
-      (future (def b (conj b
-                           n))))
-    (println (count b))))
-
-
-;; Let's slow things down to understand
-
-(comment
-  (do
-    (def b [])
-
-    (doseq [n (range 2000)]
-      (future (def b (conj b
-                           (do (when (= n 5)
-                                 (println (count b))
-                                 (Thread/sleep 100))
-                               n)))))
-    (Thread/sleep 100)
-    (println (count b))))
-
-;; We need transformation of state with stronger gaurantees
-
-
-;; Variables mix State + Identitiy
 
 
 ;; A symbol in clojure is just an identity which points to a value / state
@@ -169,7 +70,7 @@
 
 (swap! a (constantly 5))
 
-;; @TODO add example of swap! and reset!
+
 
 ;; Let's try this with an atom
 
@@ -203,10 +104,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Refs ensure safe mutation of multiple shared states using STM
-
-;; STM to me looks something like this
-
-;; https://vimeo.com/106226560#t=10s
 
 ;; dosync is macro to start transaction
 
@@ -273,3 +170,18 @@
         (alter b-alter conj n)))))
 
 [@a-alter @b-alter]
+
+
+(def a-commute (ref 0))
+(def b-commute (ref 0))
+
+(comment
+  (doseq [n (range 10)]
+    (future
+      (dosync
+        (println "Transaction - " n)
+        (commute a-commute (partial + n))
+        (Thread/sleep (rand-int 20))
+        (commute b-commute #(str n %))))))
+
+[@a-commute @b-commute]
