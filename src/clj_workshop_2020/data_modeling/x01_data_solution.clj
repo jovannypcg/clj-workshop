@@ -1,4 +1,4 @@
-(ns clj-workshop-2020.data-modeling.x02-data-solution)
+(ns clj-workshop-2020.data-modeling.x01-data-solution)
 
 (def data
   [{:name      "Batman"

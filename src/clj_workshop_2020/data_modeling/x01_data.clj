@@ -8,7 +8,6 @@
 ;; * His alias is "Bruce Wayne"
 ;; * His powers are that he is rich
 ;; * His weapons are his utility belt and a kryptonite spear
-;; * His alignment is "Chaotic Good"
 ;; * His nemeses include the Joker and Penguin
 ;;
 ;; How might you model referential relations, such as nemeses, alliances, or

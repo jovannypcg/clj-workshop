@@ -1,4 +1,4 @@
-(ns clj-workshop-2020.data-modeling.x03-schemas
+(ns clj-workshop-2020.data-modeling.x02-schemas-solution
   (:require [datascript.core :as ds]))
 
 (def schema
@@ -34,17 +34,25 @@
       :db/valueType   :db.type/ref
       :db/cardinality :db.cardinality/many}]))
 
-(ds/db-with
-  (ds/empty-db schema)
-  [{:name       "Batman"
-    :alias      "Bruce Wayne"
-    :powers     #{"Rich"}
-    :weapons    #{"Utility Belt" "Kryptonite Spear"}
-    :hair-color :black
-    :alignment  "Chaotic Good"
-    :nemesis    [{:name "Joker"}
-                 {:name "Penguin"}]}
-   {:name  "Batman"
-    :alias "Bruce"}
-   {:name "Penguin"
-    :nemesis [{:alias "Bruce"}]}])
+;; Play around with entity, entid, entity-db, pull, pull-many
+(def db
+  (ds/db-with
+    (ds/empty-db schema)
+    [{:name       "Batman"
+      :alias      "Bruce Wayne"
+      :powers     #{"Rich"}
+      :weapons    #{"Utility Belt" "Kryptonite Spear"}
+      :hair-color :black
+      :alignment  "Chaotic Good"
+      :nemesis    [{:name "Joker"}
+                   {:name "Penguin"}]}
+     {:name  "Batman"
+      :alias "Bruce"}
+     {:name    "Penguin"
+      :nemesis [{:alias "Bruce"}]}]))
+
+(def ddb
+  (ds/db-with
+    (ds/empty-db {:name {:db/unique :db.unique/identity
+                         :db/valueType :db.type/string}})
+    [{:name "Jovanny Pablo"}]))
