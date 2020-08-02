@@ -1,0 +1,12 @@
+{:name       {:db/unique      :db.unique/identity
+              :db/cardinality :db.cardinality/one}
+ :publisher  {:db/valueType   :db.type/ref
+              :db/cardinality :db.cardinality/many}
+ :race       {:db/cardinality :db.cardinality/one}
+ :alignment  {:db/cardinality :db.cardinality/one}
+ :hair-color {:db/cardinality :db.cardinality/one}
+ :eye-color  {:db/cardinality :db.cardinality/one}
+ :skin-color {:db/cardinality :db.cardinality/one}
+ :gender     {:db/cardinality :db.cardinality/one}
+ :height     {:db/cardinality :db.cardinality/one}
+ :weight     {:db/cardinality :db.cardinality/one}}

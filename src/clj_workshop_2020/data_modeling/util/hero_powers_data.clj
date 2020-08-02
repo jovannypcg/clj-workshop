@@ -1,5 +1,5 @@
 (ns clj-workshop-2020.data-modeling.util.hero-powers-data
-  (:require [clj-workshop-2020.data-modeling.utility.misc :as misc]))
+  (:require [clj-workshop-2020.data-modeling.util.misc :as misc]))
 
 ;; ## Get Powers Data
 ;;

@@ -1,4 +1,6 @@
-(ns clj-workshop-2020.data-modeling.x02-schemas)
+(ns clj-workshop-2020.data-modeling.x02-schemas
+  (:require [datascript.core :as ds]
+            [clj-workshop-2020.data-modeling.util.misc :as misc]))
 
 ;; Exercise: Define the schema for superheroes.
 ;;
@@ -24,4 +26,9 @@
      :db/valueType   #{:db.type/ref}}))
 
 (def superhero-schema
-  {})
+  (misc/read-edn "schema/hero-schema.edn"))
+
+(def db
+  (ds/db-with
+    (ds/empty-db superhero-schema)
+    []))

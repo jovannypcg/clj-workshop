@@ -74,3 +74,35 @@
 (defn supplemental-hero-data []
   (let [filename "resources/SuperheroDataset.csv"]
     (->> filename misc/csv-file->maps (map normalize))))
+
+(defn add-stat-ids [{hero-name :name :as hero}]
+  (letfn [(add-stat-id [stats]
+            (map (fn [{stat-name :stat/name :as stat}]
+                   (assoc stat :hero.stat/id (str hero-name "/" (name stat-name))))
+                 stats))]
+    (update hero :stats add-stat-id)))
+
+(defn add-relative-ids [{hero-name :name :as hero}]
+  (letfn [(add-relative-id [relatives]
+            (map (fn [{:keys [relative] :as r}]
+                   (assoc r :hero.relative/id (str hero-name "/" (:name relative))))
+                 relatives))]
+    (update hero :relatives add-relative-id)))
+
+(defn add-team-affiliations [{hero-name :name :as hero}]
+  (letfn [(add-team-affiliation [team-affiliation]
+            (map (fn [{tn :team/name :as r}]
+                   (assoc r :hero.team/id (str hero-name "/" tn)))
+                 team-affiliation))]
+    (update hero :team-affiliation add-team-affiliation)))
+
+(defn creator-name->creator-ref [{:keys [creator] :as hero}]
+  (cond-> hero creator (update :creator (fn [p] {:name p}))))
+
+(defn hero->datascript-format [hero]
+  (-> hero
+      add-stat-ids
+      ;; add-relative-ids
+      ;; add-team-affiliations
+      ;; creator-name->creator-ref
+      ))
