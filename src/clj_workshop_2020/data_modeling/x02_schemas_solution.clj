@@ -51,8 +51,3 @@
      {:name    "Penguin"
       :nemesis [{:alias "Bruce"}]}]))
 
-(def ddb
-  (ds/db-with
-    (ds/empty-db {:name {:db/unique :db.unique/identity
-                         :db/valueType :db.type/string}})
-    [{:name "Jovanny Pablo"}]))

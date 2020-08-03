@@ -102,7 +102,6 @@
 (defn hero->datascript-format [hero]
   (-> hero
       add-stat-ids
-      ;; add-relative-ids
-      ;; add-team-affiliations
-      ;; creator-name->creator-ref
-      ))
+      add-relative-ids
+      add-team-affiliations
+      creator-name->creator-ref))
