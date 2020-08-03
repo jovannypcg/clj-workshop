@@ -1,7 +1,7 @@
 (ns clj-workshop-2020.data-modeling.x02-schemas-solution
   (:require [datascript.core :as ds]))
 
-(def schema
+(def datascript-schema
   {:name    {:db/unique :db.unique/identity}
    :alias   {:db/unique      :db.unique/identity
              :db/cardinality :db.cardinality/many}
@@ -37,7 +37,7 @@
 ;; Play around with entity, entid, entity-db, pull, pull-many
 (def db
   (ds/db-with
-    (ds/empty-db schema)
+    (ds/empty-db datascript-schema)
     [{:name       "Batman"
       :alias      "Bruce Wayne"
       :powers     #{"Rich"}
