@@ -1,0 +1,3 @@
+{:name {:db/unique      :db.unique/identity
+        :db/cardinality :db.cardinality/one}
+ :powers {:db/cardinality :db.cardinality/many}}

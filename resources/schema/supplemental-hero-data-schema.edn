@@ -1,0 +1,41 @@
+{:name             {:db/unique      :db.unique/identity
+                    :db/cardinality :db.cardinality/one}
+ :url              {:db/unique      :db.unique/identity
+                    :db/cardinality :db.cardinality/one}
+ :creator          {:db/valueType   :db.type/ref
+                    :db/cardinality :db.cardinality/many}
+ :team-affiliation {:db/valueType   :db.type/ref
+                    :db/cardinality :db.cardinality/many}
+ :aliases          {:db/cardinality :db.cardinality/many}
+ :team/name        {:db/cardinality :db.cardinality/one}
+ :first-appearance {:db/cardinality :db.cardinality/one}
+ :team/leader?     {:db/cardinality :db.cardinality/one}
+ :team/former?     {:db/cardinality :db.cardinality/one}
+ :occupation       {:db/cardinality :db.cardinality/many}
+ :base             {:db/cardinality :db.cardinality/many}
+ :full-name        {:db/cardinality :db.cardinality/many}
+ :place-of-birth   {:db/cardinality :db.cardinality/one}
+ :stats            {:db/valueType   :db.type/ref
+                    :db/cardinality :db.cardinality/many}
+ :hero.stat/id     {:db/unique      :db.unique/identity
+                    :db/cardinality :db.cardinality/one}
+ :hero.relative/id {:db/unique      :db.unique/identity
+                    :db/cardinality :db.cardinality/one}
+ :hero.team/id     {:db/unique      :db.unique/identity
+                    :db/cardinality :db.cardinality/one}
+ :stat/name        {:db/cardinality :db.cardinality/one}
+ :stat/value       {:db/cardinality :db.cardinality/one}
+ :relatives        {:db/valueType   :db.type/ref
+                    :db/cardinality :db.cardinality/many}
+ :relative         {:db/valueType   :db.type/ref
+                    :db/cardinality :db.cardinality/one}
+ :relationship     {:db/cardinality :db.cardinality/one}
+ :alter-egos       {:db/cardinality :db.cardinality/many}
+ :race             {:db/cardinality :db.cardinality/one}
+ :alignment        {:db/cardinality :db.cardinality/one}
+ :hair-color       {:db/cardinality :db.cardinality/one}
+ :eye-color        {:db/cardinality :db.cardinality/one}
+ :skin-color       {:db/cardinality :db.cardinality/one}
+ :gender           {:db/cardinality :db.cardinality/one}
+ :height           {:db/cardinality :db.cardinality/one}
+ :weight           {:db/cardinality :db.cardinality/one}}
