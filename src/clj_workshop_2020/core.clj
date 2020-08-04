@@ -1,8 +1,7 @@
 (ns clj-workshop-2020.core
   (:gen-class)
   (:require [clj-workshop-2020.service :as service]
-            [io.pedestal.http :as http]
-            [mount.core :as mount]))
+            [io.pedestal.http :as http]))
 
 (def port 8890)
 
@@ -23,4 +22,4 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (start-server))
+  #_(start-server))

@@ -5,7 +5,9 @@
             [io.pedestal.http.route :as route]
             [mount.core :as mount]))
 
-(mount/start)
+#_(mount/start)
+
+;; Exercise: Implement interceptor to inject Database
 
 (def db-interceptor
   {:name  :db-interceptor
