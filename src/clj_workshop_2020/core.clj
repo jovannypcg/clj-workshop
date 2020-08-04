@@ -17,7 +17,6 @@
 
 (defn start-server []
   (do
-    (mount/start)
     (println (str "Server has started in port " port))
     (http/start (create-server))))
 
