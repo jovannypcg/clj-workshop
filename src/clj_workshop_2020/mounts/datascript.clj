@@ -1,5 +1,5 @@
 (ns clj-workshop-2020.mounts.datascript
-  (:require [clj-workshop-2020.data-modeling.util.db :as util.db]
+  (:require [clj-workshop-2020.db.datascript.util.seed :as util.db]
             [datascript.core :as ds]
             [mount.core :refer [defstate]]))
 

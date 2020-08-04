@@ -1,8 +1,8 @@
 (ns clj-workshop-2020.core
   (:gen-class)
-  (:require [mount.core :as mount]
+  (:require [clj-workshop-2020.service :as service]
             [io.pedestal.http :as http]
-            [clj-workshop-2020.service :as service]))
+            [mount.core :as mount]))
 
 (def port 8890)
 

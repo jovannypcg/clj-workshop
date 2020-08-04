@@ -1,5 +1,5 @@
-(ns clj-workshop-2020.data-modeling.util.supplemental-hero-data
-  (:require [clj-workshop-2020.data-modeling.util.misc :as misc]
+(ns clj-workshop-2020.db.datascript.util.supplemental-hero-data
+  (:require [clj-workshop-2020.db.datascript.util.misc :as misc]
             [clojure.string :as cs]))
 
 ;; ## Supplemental Hero Data

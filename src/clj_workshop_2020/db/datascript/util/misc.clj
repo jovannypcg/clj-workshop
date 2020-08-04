@@ -1,4 +1,4 @@
-(ns clj-workshop-2020.data-modeling.util.misc
+(ns clj-workshop-2020.db.datascript.util.misc
   (:require [clojure-csv.core :as csv]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
