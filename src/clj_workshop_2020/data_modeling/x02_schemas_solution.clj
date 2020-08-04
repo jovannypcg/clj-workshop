@@ -1,16 +1,15 @@
 (ns clj-workshop-2020.data-modeling.x02-schemas-solution
   (:require [datascript.core :as ds]))
 
-(comment
-  (def family-schema
-    {:name     {:db/unique :db.unique/identity}
-     :aliases  {:db/unique      :db.unique/identity
-                :db/cardinality :db.cardinality/many}
-     :spouse   {:db/valueType :db.type/ref}
-     :parents  {:db/valueType   :db.type/ref
-                :db/cardinality :db.cardinality/many}
-     :siblings {:db/valueType   :db.type/ref
-                :db/cardinality :db.cardinality/many}}))
+(def parker-family-schema
+  {:name   {:db/unique :db.unique/identity}
+   :alias  {:db/unique      :db.unique/identity
+            :db/cardinality :db.cardinality/many}
+   :gender {:db/cardinality :db.cardinality/one}
+   :spouse {:db/valueType   :db.type/ref
+            :db/cardinality :db.cardinality/one}
+   :child  {:db/valueType   :db.type/ref
+            :db/cardinality :db.cardinality/many}})
 
 (def hero-schema
   {:name    {:db/unique :db.unique/identity}

@@ -1,5 +1,34 @@
 (ns clj-workshop-2020.data-modeling.x01-data-solution)
 
+(def parker-family-data
+  [{:name   "Peter Parker"
+    :gender "M"
+    :alias  ["Spider-Man" "Spidey"]}
+   {:name   "Richard Parker"
+    :gender "M"
+    :spouse {:name "Mary Parker"}}
+   {:name   "Mary Parker"
+    :gender "F"
+    :spouse {:name "Richard Parker"}}
+   {:name "Richard Parker"
+    :child [{:name "Peter Parker"}]}
+   {:name "Mary Parker"
+    :child [{:name "Peter Parker"}]}
+   {:name   "Ben Parker"
+    :gender "M"
+    :spouse {:name "May Parker"}}
+   {:name   "May Parker"
+    :gender "F"
+    :spouse {:name "Ben Parker"}}
+   ;; Grandfather
+   {:child  [{:name "Richard Parker"}
+             {:name "Ben Parker"}]
+    :gender "M"}
+   ;; Grandmother
+   {:child  [{:name "Richard Parker"}
+             {:name "Ben Parker"}]
+    :gender "F"}])
+
 (def hero-data
   [{:name    "Batman"
     :alias   "Bruce Wayne"
@@ -32,23 +61,3 @@
    {:name    "Joker"
     :alias   "Jack Nieper"
     :nemesis [{:name "Batman"}]}])
-
-(def family-data
-  [{:name    "Petter Parker"
-    :gender  "M"
-    :parents [{:name "Richard Parker"} {:name "Mary Parker"}]
-    :alias   ["Spider-Man" "Spidey"]}
-   {:name     "Richard Parker"
-    :gender   "M"
-    :spouse   {:name "Mary Parker"}
-    :siblings [{:name "Ben Parker"}]}
-   {:name   "Mary Parker"
-    :gender "F"
-    :spouse {:name "Richard Parker"}}
-   {:name     "Ben Parker"
-    :gender   "M"
-    :spouse   {:name "May Parker"}
-    :siblings [{:name "Richard Parker"}]}
-   {:name   "May Parker"
-    :gender "F"
-    :spouse {:name "Ben Parker"}}])

@@ -3,14 +3,14 @@
 ;; Exercise: Define data for the Parker family according
 ;; to the following facts.
 ;;
-;; * Petter Parker is son of Richard and Mary Parker, who are maried
-;; * Petter aliases are “Spidey” and “Spider-Man”
+;; * Peter Parker is son of Richard and Mary Parker, who are maried
+;; * Peter aliases are “Spidey” and “Spider-Man”
 ;; * Richard’s brother is Ben Parker
 ;; * Ben Parker is maried to May Parker
 ;;
 ;; Datascript schemas require these attributes: :db/unique, :db/cardinality, :db/valueType
 
-(def family-data
+(def parker-family
   [{}
    {}])
 
