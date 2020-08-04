@@ -6,27 +6,23 @@
     :alias  ["Spider-Man" "Spidey"]}
    {:name   "Richard Parker"
     :gender "M"
-    :spouse {:name "Mary Parker"}}
+    :spouse {:name "Mary Parker"}
+    :child  [{:name "Peter Parker"}]}
    {:name   "Mary Parker"
     :gender "F"
-    :spouse {:name "Richard Parker"}}
-   {:name "Richard Parker"
-    :child [{:name "Peter Parker"}]}
-   {:name "Mary Parker"
-    :child [{:name "Peter Parker"}]}
+    :spouse {:name "Richard Parker"}
+    :child  [{:name "Peter Parker"}]}
    {:name   "Ben Parker"
     :gender "M"
     :spouse {:name "May Parker"}}
    {:name   "May Parker"
     :gender "F"
     :spouse {:name "Ben Parker"}}
-   ;; Grandfather
-   {:child  [{:name "Richard Parker"}
-             {:name "Ben Parker"}]
+   {:child  [{:name "Ben Parker"}
+             {:name "Richard Parker"}]
     :gender "M"}
-   ;; Grandmother
-   {:child  [{:name "Richard Parker"}
-             {:name "Ben Parker"}]
+   {:child  [{:name "Ben Parker"}
+             {:name "Richard Parker"}]
     :gender "F"}])
 
 (def hero-data
