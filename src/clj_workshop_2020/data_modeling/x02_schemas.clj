@@ -2,19 +2,13 @@
   (:require [datascript.core :as ds]
             [clj-workshop-2020.data-modeling.util.misc :as misc]))
 
-;; Exercise: Define the schema for superheroes.
+;; Exercise: Define the schema for the Parker family according
+;; to the following facts.
 ;;
-;; A schema is a map whose keys are the fields of the entity
-;; and its values are the attributes describing the purpose of the field.
-;;
-;; For example, Wonder Woman may have the
-;; following characteristics for his schema:
-;;
-;; * Her name is unique
-;; * Her alias is unique but may have multiple aliases
-;; * She may have many superpowers
-;; * She may have attack with many weapons
-;; * She may have many nemeses with similar characteristics.
+;; * Petter Parker is son of Richard and Mary Parker, who are maried
+;; * Petter aliases are “Spidey” and “Spider-Man”
+;; * Richard’s brother is Ben Parker
+;; * Ben Parker is maried to May Parker
 ;;
 ;; Datascript schemas require these attributes: :db/unique, :db/cardinality, :db/valueType
 
@@ -25,10 +19,24 @@
      :db/cardinality #{:db.cardinality/one :db.cardinality/many}
      :db/valueType   #{:db.type/ref}}))
 
-(def superhero-schema
-  (misc/read-edn "schema/hero-schema.edn"))
+(def family-schema
+  {})
 
-(def db
-  (ds/db-with
-    (ds/empty-db superhero-schema)
-    []))
+;; Exercise: Define the schema for superheroes.
+;;
+;; A schema is a map whose keys are the fields of the entity
+;; and its values are the attributes describing the purpose of the field.
+;;
+;; For example, Wonder Woman may have the
+;; following characteristics for his schema:
+;;
+;; * Her name is unique and her identifier
+;; * She has many unique aliases
+;; * She has many superpowers
+;; * She attacks with many weapons
+;; * She may have many nemeses
+;;
+;; Datascript schemas require these attributes: :db/unique, :db/cardinality, :db/valueType
+
+(def hero-schema
+  {})

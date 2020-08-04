@@ -1,7 +1,18 @@
 (ns clj-workshop-2020.data-modeling.x02-schemas-solution
   (:require [datascript.core :as ds]))
 
-(def datascript-schema
+(comment
+  (def family-schema
+    {:name     {:db/unique :db.unique/identity}
+     :aliases  {:db/unique      :db.unique/identity
+                :db/cardinality :db.cardinality/many}
+     :spouse   {:db/valueType :db.type/ref}
+     :parents  {:db/valueType   :db.type/ref
+                :db/cardinality :db.cardinality/many}
+     :siblings {:db/valueType   :db.type/ref
+                :db/cardinality :db.cardinality/many}}))
+
+(def hero-schema
   {:name    {:db/unique :db.unique/identity}
    :alias   {:db/unique      :db.unique/identity
              :db/cardinality :db.cardinality/many}
@@ -11,7 +22,7 @@
              :db/cardinality :db.cardinality/many}})
 
 (comment
-  (def datomic-schema
+  (def datomic-hero-schema
     [{:db/ident       :name
       :db/valueType   :db.type/string
       :db/unique      :db.unique/identity
@@ -34,10 +45,9 @@
       :db/valueType   :db.type/ref
       :db/cardinality :db.cardinality/many}]))
 
-;; Play around with entity, entid, entity-db, pull, pull-many
-(def db
+(def hero-db
   (ds/db-with
-    (ds/empty-db datascript-schema)
+    (ds/empty-db hero-schema)
     [{:name       "Batman"
       :alias      "Bruce Wayne"
       :powers     #{"Rich"}
@@ -50,4 +60,3 @@
       :alias "Bruce"}
      {:name    "Penguin"
       :nemesis [{:alias "Bruce"}]}]))
-

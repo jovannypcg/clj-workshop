@@ -1,13 +1,13 @@
 (ns clj-workshop-2020.data-modeling.x03-queries
   (:require [datascript.core :as ds]
-            [clj-workshop-2020.data-modeling.x02-schemas-solution :refer [datascript-schema]]))
+            [clj-workshop-2020.data-modeling.x02-schemas-solution :refer [hero-schema]]))
 
 ;; ## Queries and Data Access
 ;; In this section we discuss the key ways to get data from a db.
 (def db
   (ds/db-with
     (ds/empty-db
-      datascript-schema)
+      hero-schema)
     [{:name       "Batman"
       :alias      "Bruce Wayne"
       :powers     #{"Rich"}
@@ -38,3 +38,30 @@
 ;; You can also do 'backrefs' to walk the link backwards.
 (->> (ds/entity db [:name "Joker"])
      :_nemesis)
+
+;; ### The Query API
+;; This is the most powerful and most commonly used API.
+;;
+;; Queries have a powerful datalog syntax. Note that queries are data. It is
+;; common to inline them with the q function, but they can be stored up as
+;; standalone items in a file, db, etc.
+(def nemeses-query
+  '[:find [?enemy-name ...]
+    :in $ ?name
+    :where
+    [?e :name ?name]
+    [?e :nemesis ?n]
+    [?n :name ?enemy-name]])
+
+;;Get the nemeses of Batman
+(ds/q nemeses-query db "Batman")
+
+;; Exercise - Write a query to list the name and alignment of all individuals
+;; in the database.
+
+(ds/q '[:find [?name ?alignment]
+        :in $
+        :where
+        [?e :name ?name]
+        [?e :alignment ?alignment]]
+      db)

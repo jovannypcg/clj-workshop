@@ -1,5 +1,19 @@
 (ns clj-workshop-2020.data-modeling.x01-data)
 
+;; Exercise: Define data for the Parker family according
+;; to the following facts.
+;;
+;; * Petter Parker is son of Richard and Mary Parker, who are maried
+;; * Petter aliases are “Spidey” and “Spider-Man”
+;; * Richard’s brother is Ben Parker
+;; * Ben Parker is maried to May Parker
+;;
+;; Datascript schemas require these attributes: :db/unique, :db/cardinality, :db/valueType
+
+(def family-data
+  [{}
+   {}])
+
 ;; Exercise: Model at least 2 superheros as data.
 ;;
 ;; For example, Batman may have the
@@ -13,6 +27,6 @@
 ;; How might you model referential relations, such as nemeses, alliances, or
 ;; familial relationships?
 
-(def data
+(def hero-data
   [{}
    {}])
