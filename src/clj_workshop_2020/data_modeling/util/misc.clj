@@ -1,9 +1,9 @@
 (ns clj-workshop-2020.data-modeling.util.misc
-  (:require [cuerdas.core :as cc]
-            [clojure.string :as cs]
-            [clojure-csv.core :as csv]
+  (:require [clojure-csv.core :as csv]
             [clojure.edn :as edn]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [clojure.string :as cs]
+            [cuerdas.core :as cc]))
 
 ;; ### Keywordize strings by:
 ;;  1. replacing all sequences of nonword characters with a space

@@ -1,6 +1,6 @@
 (ns clj-workshop-2020.data-modeling.util.supplemental-hero-data
-  (:require [clojure.string :as cs]
-            [clj-workshop-2020.data-modeling.util.misc :as misc]))
+  (:require [clj-workshop-2020.data-modeling.util.misc :as misc]
+            [clojure.string :as cs]))
 
 ;; ## Supplemental Hero Data
 ;;
@@ -50,8 +50,8 @@
   (let [attrs [:combat :durability :intelligence :power :speed :strength :total-power :unnamed-0]
         stats (select-keys m attrs)]
     (assoc
-      (apply dissoc m attrs)
-      :stats (map (fn [[k v]] {:stat/name k :stat/value v}) stats))))
+     (apply dissoc m attrs)
+     :stats (map (fn [[k v]] {:stat/name k :stat/value v}) stats))))
 
 (defn normalize [m]
   (let [dbl-fields [:speed :intelligence :unnamed-0 :power :durability :strength

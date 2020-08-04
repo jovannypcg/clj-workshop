@@ -1,6 +1,6 @@
 (ns clj-workshop-2020.state.mount.config
-  (:require [mount.core :refer [defstate]]
-            [clojure.edn :as edn]))
+  (:require [clojure.edn :as edn]
+            [mount.core :refer [defstate]]))
 
 (def config-path "resources/config.edn")
 

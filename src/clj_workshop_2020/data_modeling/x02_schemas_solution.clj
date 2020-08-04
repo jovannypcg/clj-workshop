@@ -46,16 +46,16 @@
 
 (def hero-db
   (ds/db-with
-    (ds/empty-db hero-schema)
-    [{:name       "Batman"
-      :alias      "Bruce Wayne"
-      :powers     #{"Rich"}
-      :weapons    #{"Utility Belt" "Kryptonite Spear"}
-      :hair-color :black
-      :alignment  "Chaotic Good"
-      :nemesis    [{:name "Joker"}
-                   {:name "Penguin"}]}
-     {:name  "Batman"
-      :alias "Bruce"}
-     {:name    "Penguin"
-      :nemesis [{:alias "Bruce"}]}]))
+   (ds/empty-db hero-schema)
+   [{:name       "Batman"
+     :alias      "Bruce Wayne"
+     :powers     #{"Rich"}
+     :weapons    #{"Utility Belt" "Kryptonite Spear"}
+     :hair-color :black
+     :alignment  "Chaotic Good"
+     :nemesis    [{:name "Joker"}
+                  {:name "Penguin"}]}
+    {:name  "Batman"
+     :alias "Bruce"}
+    {:name    "Penguin"
+     :nemesis [{:alias "Bruce"}]}]))

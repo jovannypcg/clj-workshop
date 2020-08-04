@@ -1,6 +1,6 @@
 (ns clj-workshop-2020.state.mount.database
-  (:require [mount.core :refer [defstate]]
-            [clj-workshop-2020.state.mount.config :refer [config]]))
+  (:require [clj-workshop-2020.state.mount.config :refer [config]]
+            [mount.core :refer [defstate]]))
 
 (defn start-connection
   [config]

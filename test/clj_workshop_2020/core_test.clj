@@ -24,6 +24,6 @@
 (deftest add-x-to-y-a-using-are
   (are [x y] (= 5
                 (add x y))
-             2 3
-             1 4
-             3 2))
+    2 3
+    1 4
+    3 2))

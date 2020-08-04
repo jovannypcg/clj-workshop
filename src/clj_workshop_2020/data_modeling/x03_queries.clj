@@ -1,30 +1,30 @@
 (ns clj-workshop-2020.data-modeling.x03-queries
-  (:require [datascript.core :as ds]
+  (:require [clj-workshop-2020.data-modeling.x01-data-solution :refer [parker-family-data]]
             [clj-workshop-2020.data-modeling.x02-schemas-solution :refer [hero-schema parker-family-schema]]
-            [clj-workshop-2020.data-modeling.x01-data-solution :refer [parker-family-data]]))
+            [datascript.core :as ds]))
 
 ;; ## Queries and Data Access
 ;; In this section we discuss the key ways to get data from a db.
 
 (def parker-family-db
   (ds/db-with
-    (ds/empty-db parker-family-schema)
-    parker-family-data))
+   (ds/empty-db parker-family-schema)
+   parker-family-data))
 
 (def hero-db
   (ds/db-with
-    (ds/empty-db
-      hero-schema)
-    [{:name       "Batman"
-      :alias      "Bruce Wayne"
-      :powers     #{"Rich"}
-      :weapons    #{"Utility Belt" "Kryptonite Spear"}
-      :hair-color :black
-      :alignment  "Chaotic Good"
-      :nemesis    [{:name "Joker"}
-                   {:name "Penguin"}]}
-     {:name  "Batman"
-      :alias "Bruce"}]))
+   (ds/empty-db
+    hero-schema)
+   [{:name       "Batman"
+     :alias      "Bruce Wayne"
+     :powers     #{"Rich"}
+     :weapons    #{"Utility Belt" "Kryptonite Spear"}
+     :hair-color :black
+     :alignment  "Chaotic Good"
+     :nemesis    [{:name "Joker"}
+                  {:name "Penguin"}]}
+    {:name  "Batman"
+     :alias "Bruce"}]))
 
 ;; ## Exercise: Try the following in a REPL to understand the query methods.
 

@@ -9,6 +9,8 @@
 
 
 ;; This will run on a different thread
+
+
 (comment
   (future 1)
 
@@ -35,6 +37,7 @@
 
 ;; Different futures can pass on values with futures as well.
 
+
 (comment
   (def p (promise))
 
@@ -53,6 +56,7 @@
 
 
 ;; A symbol in clojure is just an identity which points to a value / state
+
 
 (def a 1)
 
@@ -73,6 +77,7 @@
 
 
 ;; Let's try this with an atom
+
 
 (comment
   (do
@@ -114,6 +119,7 @@
 ;; Values held by refs must be immutable preferably clojure persistent
 ;; structures
 
+
 (def a-ref-num (ref 0))
 (def b-ref-num (ref 0))
 
@@ -121,12 +127,11 @@
   (doseq [n (range 10)]
     (future
       (dosync
-        (println "Transaction - " n)
-        (ref-set a-ref-num n)
-        (ref-set b-ref-num n)))))
+       (println "Transaction - " n)
+       (ref-set a-ref-num n)
+       (ref-set b-ref-num n)))))
 
 [@a-ref-num @b-ref-num]
-
 
 (do
   (def a-ref (ref 0))
@@ -140,9 +145,9 @@
       (future
 
         (dosync
-          (ref-set a-ref n)
-          (Thread/sleep (rand-int 200))
-          (ref-set b-ref n))
+         (ref-set a-ref n)
+         (Thread/sleep (rand-int 200))
+         (ref-set b-ref n))
 
         (reset! a-atom n)
         (Thread/sleep (rand-int 200))
@@ -156,7 +161,6 @@
                        @a-atom
                        @b-atom)))))
 
-
 (def a-alter (ref []))
 (def b-alter (ref []))
 
@@ -164,13 +168,12 @@
   (doseq [n (range 10)]
     (future
       (dosync
-        (println "Transaction - " n)
-        (alter a-alter conj n)
-        (Thread/sleep (rand-int 20))
-        (alter b-alter conj n)))))
+       (println "Transaction - " n)
+       (alter a-alter conj n)
+       (Thread/sleep (rand-int 20))
+       (alter b-alter conj n)))))
 
 [@a-alter @b-alter]
-
 
 (def a-commute (ref 0))
 (def b-commute (ref 0))
@@ -179,9 +182,9 @@
   (doseq [n (range 10)]
     (future
       (dosync
-        (println "Transaction - " n)
-        (commute a-commute (partial + n))
-        (Thread/sleep (rand-int 20))
-        (commute b-commute #(str n %))))))
+       (println "Transaction - " n)
+       (commute a-commute (partial + n))
+       (Thread/sleep (rand-int 20))
+       (commute b-commute #(str n %))))))
 
 [@a-commute @b-commute]

@@ -34,5 +34,4 @@
     (println "Let's wait for it")
     (println (str "parallel-map returned: " @mapped))))
 
-
 (do-stuff!)

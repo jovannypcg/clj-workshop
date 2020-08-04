@@ -1,6 +1,6 @@
 (ns clj-workshop-2020.data-modeling.x02-schemas
-  (:require [datascript.core :as ds]
-            [clj-workshop-2020.data-modeling.util.misc :as misc]))
+  (:require [clj-workshop-2020.data-modeling.util.misc :as misc]
+            [datascript.core :as ds]))
 
 ;; Exercise: Define the schema for the Parker family according
 ;; to the following facts.
