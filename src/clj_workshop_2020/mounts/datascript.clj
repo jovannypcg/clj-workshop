@@ -10,6 +10,8 @@
   (let [conn (ds/create-conn schema)]
     (do
       (util.db/seed conn)
+      (println "Datascript connection has been created")
+      (println "Seeding Datascript database...")
       conn)))
 
 (defstate connection :start (create-connection))
