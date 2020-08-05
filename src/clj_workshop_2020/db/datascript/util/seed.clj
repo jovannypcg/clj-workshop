@@ -18,4 +18,6 @@
     (ds/transact! conn (mapv supplemental-hero-data/hero->datascript-format (supplemental-hero-data/supplemental-hero-data)))))
 
 (comment
+  (def conn (ds/create-conn db-schema))
+  (seed conn)
   (ds/pull @conn '[*] [:name "Spider-Man"]))
