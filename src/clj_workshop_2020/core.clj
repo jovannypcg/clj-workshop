@@ -7,14 +7,12 @@
 
 (def service )
 
-(defn create-server
-  []
+(defn create-server []
   )
 
 (defn start-server []
-  (do
-    (println (str "Server has started in port " port))
-    ))
+  (println (str "Server has started in port " port))
+  )
 
 (defn -main
   "I don't do a whole lot ... yet."

@@ -7,7 +7,19 @@
             [clojure.data.json :as json]
             [io.pedestal.interceptor.error :as error-int]))
 
+(def path->name {})
 
+(def db-interceptor {})
+
+(def body->json {})
+
+(def error-interceptor {})
+
+
+
+(def routes
+  (route/expand-routes
+    #{}))
 
 #_(route/try-routing-for routes :prefix-tree "/greet/p001" :get)
 #_(route/try-routing-for routes :prefix-tree "/greet/p001" :get)
