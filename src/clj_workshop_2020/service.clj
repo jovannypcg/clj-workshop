@@ -12,3 +12,8 @@
 #_(route/try-routing-for routes :prefix-tree "/greet/p001" :get)
 #_(route/try-routing-for routes :prefix-tree "/greet/p001" :get)
 #_(route/try-routing-for routes :prefix-tree "/greet/1" :get)
+
+
+#_(route/try-routing-for routes :prefix-tree "/heroes/Spider-Man" :get)
+#_(route/try-routing-for routes :prefix-tree "/heroes/Spider-Man/occupations" :get)
+#_(route/try-routing-for routes :prefix-tree "/heroes/Spider-Man/occupations" :post)
