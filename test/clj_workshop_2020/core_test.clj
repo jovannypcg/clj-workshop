@@ -1,7 +1,30 @@
 (ns clj-workshop-2020.core-test
-  (:require [clj-workshop-2020.core :refer :all]
-            [clojure.test :refer :all]))
+  (:require [clojure.test :refer :all]
+            [clj-workshop-2020.core :as core]
+            [io.pedestal.http :as http]
+            [io.pedestal.http.route :as route]
+            [io.pedestal.test :as test]))
 
+
+#_(def service-fn
+  (::http/service-fn (http/create-servlet core/service)))
+
+
+#_(def url-for
+    (route/url-for-routes host/routes))
+
+#_(deftest greet
+    (let [response (test/response-for service-fn :get (url-for :greet-get :path-params {:id 1}))
+          {:keys [status body]} response]
+      (is (= 200 status))
+      (is (= "{:message \"Greetings!!! 1\", :conn {:conn \"localhost\"}}"
+            body))))
+
+
+
+
+
+#_(comment
 (deftest a-test
   (testing "FIXME, I fail."
     (is (= 0 1))))
@@ -27,3 +50,4 @@
     2 3
     1 4
     3 2))
+)
