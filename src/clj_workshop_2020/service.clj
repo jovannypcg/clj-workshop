@@ -3,17 +3,7 @@
             [clj-workshop-2020.mounts.datascript :as datascript]
             [datascript.core :as ds]
             [io.pedestal.http.route :as route]
-            [mount.core :as mount]))
+            [mount.core :as mount]
+            [clojure.data.json :as json]
+            [io.pedestal.interceptor.error :as error-int]))
 
-#_(mount/start)
-
-;; Exercise: Implement interceptor to inject Database
-
-(def db-interceptor
-  {:name  :db-interceptor
-   :enter (fn [context]
-            (update context :request assoc :db (ds/db datascript/connection)))})
-
-(def routes
-  (route/expand-routes
-   #{["/greet" :get [db-interceptor handler.hero/respond-hello] :route-name :greet-view]}))
