@@ -9,7 +9,7 @@
   []
   (let [conn (ds/create-conn schema)]
     (do
-      (util.db/seed conn)
+      (util.db/seed! conn)
       (println "Datascript connection has been created")
       (println "Seeding Datascript database...")
       conn)))

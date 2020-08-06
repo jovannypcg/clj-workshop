@@ -10,14 +10,9 @@
 (def supplemental-hero-schema (misc/read-edn "schema/supplemental-hero-data-schema.edn"))
 (def db-schema (merge hero-schema hero-powers-schema supplemental-hero-schema))
 
-(defn seed
+(defn seed!
   [conn]
   (do
     (ds/transact! conn (mapv hero-data/hero->datascript-format (hero-data/heroes-data)))
     (ds/transact! conn (vec (hero-powers-data/powers-data)))
     (ds/transact! conn (mapv supplemental-hero-data/hero->datascript-format (supplemental-hero-data/supplemental-hero-data)))))
-
-(comment
-  (def conn (ds/create-conn db-schema))
-  (seed conn)
-  (ds/pull @conn '[*] [:name "Spider-Man"]))
