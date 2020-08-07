@@ -3,14 +3,14 @@
 
 
 ;;REQUEST MAP
-#_{:request {:path-params {}
+#_{:request {:path-params {:id :name}
 						 :json-body   {}
 						 :name        ""
 						 :db          {}
 						 :headers     {}}}
 
 ;;RESPONSE MAP
-#_{:resposne {:headers {}
+#_{:response {:headers {}
 							:status  0
 							:body    {}}}
 

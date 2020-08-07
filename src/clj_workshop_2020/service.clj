@@ -9,7 +9,7 @@
 						[io.pedestal.interceptor.error :as error-int]))
 
 ;;CONTEXT MAP
-#_{:request  {:path-params {}}
+#_{:request  {:path-params {:id :name}}
 	 :response {}}
 
 (def path->name {:name
