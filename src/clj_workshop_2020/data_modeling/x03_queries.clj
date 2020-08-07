@@ -17,7 +17,7 @@
     hero-schema)
    [{:name       "Batman"
      :alias      "Bruce Wayne"
-     :powers     #{"Rich"}
+     :powers     #{"Rich" "Strong"}
      :weapons    #{"Utility Belt" "Kryptonite Spear"}
      :hair-color :black
      :alignment  "Chaotic Good"
@@ -73,12 +73,9 @@
 ;; ### The Query API
 ;; This is the most powerful and most commonly used API.
 
+;; Get powers by hero name
 (def basic-query
-  '[:find ?name ?alias
-    :in $
-    :where
-    [?e :name ?name]
-    [?e :alias ?alias]])
+  '[])
 
 (comment
   (ds/q basic-query hero-db))

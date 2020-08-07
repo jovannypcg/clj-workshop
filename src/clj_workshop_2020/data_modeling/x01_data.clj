@@ -7,8 +7,6 @@
 ;; * Peter aliases are “Spidey” and “Spider-Man”
 ;; * Richard’s brother is Ben Parker
 ;; * Ben Parker is maried to May Parker
-;;
-;; Datascript schemas require these attributes: :db/unique, :db/cardinality, :db/valueType
 
 (def parker-family
   [{}
