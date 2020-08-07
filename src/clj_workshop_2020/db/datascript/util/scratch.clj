@@ -4,25 +4,14 @@
 
 (def conn (ds/create-conn util.seed/db-schema))
 (util.seed/seed! conn)
-(ds/pull @conn '[*] [:name "Goku"])
-(ds/pull @conn '[*
-                 {:stats [[:stat/name :as :name]
-                          [:stat/value :as :value]]}
-                 {:team-affiliation [[:team/name :as :name]
-                                     [:hero.team/id :as :hero-id]
-                                     [:team/leader? :as :leader?]
-                                     [:team/former? :as :former?]]
-                  :relatives        [{:relative [:name]}]
-                  :publisher        [:name]
-                  :creator          [:name]}]
-         [:name "Spider-Man"])
+(ds/pull @conn '[*] [:name "Spider-Man"])
 
 (ds/q '[:find [?name ...]
         :in $ [?occupation]
         :where
         [?hero :occupation ?occupation]
         [?hero :name ?name]]
-      @conn ["Vigilante"])
+      @conn ["Student"])
 
 ;; Get all races
 (def races-query
@@ -34,7 +23,7 @@
 
 ;; All heroes given a race
 (def heroes-by-race-query
-  '[:find ?name
+  '[:find [?name ...]
     :in $ ?race
     :where
     [?hero :race ?race]
@@ -50,9 +39,6 @@
     [?hero :occupation ?occupation]]
   @conn
   "Spider-Man")
-
-;; GET POST /heroes/:name/occupations
-;; GET /heroes/:name
 
 (ds/pull @conn '[:occupation] [:name "Spider-Man"])
 
