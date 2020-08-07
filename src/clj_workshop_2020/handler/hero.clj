@@ -15,17 +15,20 @@
 							:body    {}}}
 
 (defn greet-get
-	[{:keys []}]
-	{:status :body})
+	[{:keys [path-params]}]
+	{:status 200 :body (str "Greeting Id:" (:id path-params))})
 
 (defn occupation-get
-	[{:keys []}]
-	{:status :body})
+	[{:keys [db name]}]
+	{:status 200 :body (db.hero/occupations! name db)})
 
 (defn occupation-post
 	[{:keys []}]
 	{:status :body})
 
 (defn heroes-get
-	[{:keys []}]
-	{:status :body})
+	[{:keys [db name]}]
+	(try
+		{:status 200 :body (db.hero/details! name db)}
+		(catch Exception e
+			(throw (ex-info "Not found" {:type :not-found})))))
