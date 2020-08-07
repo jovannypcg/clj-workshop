@@ -1,4 +1,4 @@
-(ns clj-workshop-2020.data-modeling.x03-queries
+(ns clj-workshop-2020.data-modeling.x03-queries-solution
   (:require [clj-workshop-2020.data-modeling.x01-data-solution :refer [parker-family-data]]
             [clj-workshop-2020.data-modeling.x02-schemas-solution :refer [hero-schema parker-family-schema]]
             [datascript.core :as ds]))
@@ -75,20 +75,27 @@
 
 ;; Get powers by hero name
 (def basic-query
-  '[])
+  '[:find [?powers ...]
+    :in $ ?name
+    :where
+    [?hero :name ?name]
+    [?hero :powers ?powers]])
 
 (comment
-  (ds/q basic-query hero-db))
+  (ds/q basic-query hero-db "Batman"))
 
 ;; Exercise: Get the uncle's name of a certain person
 
 (def uncle-query
-  '[:find ?uncle-name
-    :in $,,,
+  '[:find ?uncle-name ?tx
+    :in $ ?person
     :where
-    []
-    []
-    []])
+    [?parent :child ?person]
+    [?grandparent :child ?parent]
+    [?grandparent :child ?parent-sibling]
+    [?parent-sibling :gender "M"]
+    [(not= ?parent ?parent-sibling)]
+    [?parent-sibling :name ?uncle-name ?tx]])
 
 (comment
   (ds/q uncle-query parker-family-db [:name "Peter Parker"]))
@@ -101,9 +108,9 @@
   '[:find [?enemy-name ...]
     :in $ ?name
     :where
-    []
-    []
-    []])
+    [?e :name ?name]
+    [?e :nemesis ?n]
+    [?n :name ?enemy-name]])
 
 ;;Get the nemeses of Batman
 (ds/q nemeses-query hero-db "Batman")
@@ -114,6 +121,6 @@
 (ds/q '[:find [?name ?alignment]
         :in $
         :where
-        []
-        []]
+        [?e :name ?name]
+        [?e :alignment ?alignment]]
       hero-db)
